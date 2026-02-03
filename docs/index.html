@@ -1,203 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="eSkiTB: Event-based Ski Tracking Benchmark" />
+  <meta charset="utf-8">
+  <meta name="description"
+        content="eSkiTB: Event-based Ski Tracking Benchmark">
+  <meta name="keywords" content="Event Cameras, Object Tracking, Neuromorphic Vision, Ski Tracking">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>eSkiTB: Event-based Ski Tracking Benchmark</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="media/css/site.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./media/css/bulma.min.css">
+  <link rel="stylesheet" href="./media/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./media/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./media/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./media/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./media/js/fontawesome.all.min.js"></script>
+  <script src="./media/js/bulma-carousel.min.js"></script>
+  <script src="./media/js/bulma-slider.min.js"></script>
+  <script src="./media/js/index.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <nav class="nav">
-      <div class="brand">eSkiTB</div>
-      <div class="nav-links">
-        <a href="#highlights">Highlights</a>
-        <a href="#dataset">Dataset</a>
-        <a href="#pipeline">Pipeline</a>
-        <a href="#evaluation">Evaluation</a>
-        <a href="#download">Data</a>
-      </div>
-    </nav>
-    <div class="hero-content reveal">
-      <p class="eyebrow">Event-based Ski Tracking Benchmark</p>
-      <h1>Clean temporal contrast for cluttered winter sports</h1>
-      <p class="lede">300 broadcast sequences (AL/FS/JP) converted to events at 1280x720 using an <strong>iso-informational</strong> v2e pipeline—no neural interpolation. Dense 1 ms labels, visual attributes, and benchmarks against STARK (RGB) and SDTrack (spiking).</p>
-      <div class="cta-row">
-        <a class="cta primary" href="https://github.com/eventbasedvision/eskitb">GitHub Repo</a>
-        <a class="cta secondary" href="#download">Dataset (links coming)</a>
-        <a class="cta ghost" href="#citation">Paper (soon)</a>
-      </div>
-      <div class="meta">
-        <span>Train/Val/Test: 240 / 30 / 30 seq</span>
-        <span>Resolution: 1280x720</span>
-        <span>License: Code MIT, Data CC BY-NC 4.0</span>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">eSkiTB: Event-based Ski Tracking Benchmark</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Anonymous Authors</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2601.06647"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/eventbasedvision/eskitb"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://www.dropbox.com/scl/fo/ggk7wcbqb4xrjylvwkbh2/ADvJ0Q8hUV6mS_yChJz_u2I?rlkey=1fbsjthks57e3mucxrsz5&st=i5h5avm3&dl=0"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <section id="highlights" class="section reveal">
-      <div class="section-header">
-        <h2>Highlights</h2>
-        <p>Built for fair modality-vs-modality comparisons in cluttered broadcast footage.</p>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <p class="card-kicker">Scale</p>
-          <h3 class="card-title">300 seq</h3>
-          <p class="card-body">AL, FS, JP; 235 minutes of broadcast footage with attributes.</p>
-        </div>
-        <div class="card">
-          <p class="card-kicker">Resolution</p>
-          <h3 class="card-title">1280x720 events</h3>
-          <p class="card-body">Raw `(t,x,y,p)` HDF5; dense 1 ms boxes.</p>
-        </div>
-        <div class="card">
-          <p class="card-kicker">Iso-informational</p>
-          <h3 class="card-title">No interpolation</h3>
-          <p class="card-body">Direct v2e conversion; every event maps to observed photometric change.</p>
-        </div>
-        <div class="card">
-          <p class="card-kicker">Benchmark</p>
-          <h3 class="card-title">STARK vs SDTrack</h3>
-          <p class="card-body">RGB transformer vs spiking transformer on identical splits.</p>
-        </div>
-      </div>
-    </section>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./media/images/Teaser_image.png" alt="eSkiTB Teaser"/>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">eSkiTB</span> provides the first event camera dataset for ski tracking with 300 sequences across Alpine, Freestyle, and Ski Jumping disciplines.
+      </h2>
+    </div>
+  </div>
+</section>
 
-    <section class="section reveal">
-      <div class="section-header">
-        <h2>Teaser</h2>
-        <p>Event streams naturally suppress static overlays and clutter in broadcast ski footage.</p>
-      </div>
-      <div class="media-block">
-        <img src="media/images/Teaser_image.png" alt="Teaser image" />
-      </div>
-    </section>
 
-    <section id="dataset" class="section reveal">
-      <div class="section-header">
-        <h2>Dataset</h2>
-        <p>Event-based reformulation of SkiTB with dense annotations and attributes.</p>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Event cameras are bio-inspired sensors that asynchronously capture per-pixel brightness changes at microsecond precision, offering low latency, high temporal resolution, and resilience to motion blur—critical for tracking fast-moving objects. Despite their advantages, the lack of standardized benchmarks and datasets for event-based tracking has limited their integration into computer vision pipelines. This paper introduces eSkiTB, a specialized benchmark for event-based tracking in winter sports, focusing on ski jumpers, freestyle skiers, and alpine skiers. Derived from broadcast footage covering varied lighting, weather, and clutter conditions, eSkiTB includes 300 sequences with 240 for training, 30 for validation, and 30 for testing. Using the v2e event simulator under the iso-informational constraint, we ensure neuromorphic fidelity while preserving temporal resolution. We evaluate state-of-the-art event and frame-based trackers, demonstrating the efficacy of spiking neural networks and the value of fine-tuning on domain-specific data. eSkiTB advances neuromorphic vision research and establishes a foundation for event-based tracking in extreme-motion scenarios.
+          </p>
+        </div>
       </div>
-      <div class="grid two">
-        <div class="card">
-          <h3 class="card-title">Content</h3>
-          <ul class="list">
-            <li>Events: HDF5 `events` with `(t, x, y, p)` in microseconds.</li>
-            <li>Annotations: `[x, y, w, h]` pixels, class `Skier`; 1 ms spline labels.</li>
-            <li>Attributes: occlusion, fast motion, illumination variation, background clutter, and more.</li>
-            <li>Splits: Train 240 / Val 30 / Test 30 sequences.</li>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Event Conversion Pipeline. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Event Conversion Pipeline</h2>
+          <p>
+            We convert broadcast RGB videos to events using the v2e simulator under the iso-informational constraint, ensuring no neural interpolation artifacts. The pipeline includes upsampling to 1000 fps, adaptive color-to-grayscale conversion, and cubic spline interpolation for smooth bounding box trajectories at 1ms resolution.
+          </p>
+          <img src="./media/images/v2e pipeline without slowmo.png" alt="Event Conversion Pipeline"/>
+        </div>
+      </div>
+      <!--/ Event Conversion Pipeline. -->
+
+      <!-- Dataset Statistics. -->
+      <div class="column">
+        <h2 class="title is-3">Dataset Statistics</h2>
+        <div class="content">
+          <p>
+            eSkiTB contains 300 sequences distributed across three skiing disciplines: Alpine (AL), Freestyle (FS), and Ski Jumping (JP). The dataset is split into 240 training, 30 validation, and 30 test sequences.
+          </p>
+          <img src="./media/images/eSkiTB Statistics.png" alt="Dataset Statistics"/>
+        </div>
+      </div>
+    </div>
+    <!--/ Dataset Statistics. -->
+
+    <!-- Why Event Cameras. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Why Event Cameras for Ski Tracking?</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Ski tracking presents unique challenges: extreme speeds (up to 140 km/h), rapid illumination changes, motion blur, and complex backgrounds. Event cameras address these by:
+          </p>
+          <ul>
+            <li><b>High Temporal Resolution:</b> Microsecond-level event capture eliminates motion blur</li>
+            <li><b>Low Latency:</b> Asynchronous operation enables real-time tracking</li>
+            <li><b>Dynamic Range:</b> Superior performance in varying lighting conditions (bright snow to dark shadows)</li>
+            <li><b>Efficient Encoding:</b> Sparse event representation focuses on motion-relevant information</li>
           </ul>
-        </div>
-        <div class="card">
-          <h3 class="card-title">Stats</h3>
-          <p class="card-body">Heavy-tailed event rates, skewed scales, and dense motion during take-off and flight.</p>
-          <img class="card-image" src="media/images/eSkiTB Statistics.png" alt="Dataset statistics" />
+          <img src="./media/images/rgb_artifacts.png" alt="RGB Artifacts vs Event Representation"/>
+          <p class="has-text-centered">
+            Comparison showing RGB frame artifacts (motion blur, compression) vs clean event representation
+          </p>
         </div>
       </div>
-      <div class="media-block">
-        <img src="media/images/Qualitative_samples.png" alt="Qualitative samples" />
-      </div>
-    </section>
+    </div>
+    <!--/ Why Event Cameras. -->
 
-    <section class="section reveal">
-      <div class="section-header">
-        <h2>Why events</h2>
-        <p>Screen-space overlays vanish in the event domain; physical clutter follows background flow.</p>
-      </div>
-      <div class="grid two">
-        <div class="card">
-          <img class="card-image" src="media/images/rgb_artifacts.png" alt="RGB artifacts" />
-          <p class="card-body">RGB trackers drift on broadcast overlays and banners.</p>
-        </div>
-        <div class="card">
-          <img class="card-image" src="media/images/eventSimulators_Comparision.png" alt="Event simulator comparison" />
-          <p class="card-body">v2e preserves skier silhouette and motion; used for eSkiTB conversion.</p>
-        </div>
-      </div>
-    </section>
+    <!-- Benchmark Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Benchmark Results</h2>
 
-    <section id="pipeline" class="section reveal">
-      <div class="section-header">
-        <h2>Iso-informational pipeline</h2>
-        <p>Raw broadcast frames -> v2e -> events; no SuperSloMo or neural upsampling.</p>
-      </div>
-      <div class="media-block">
-        <img src="media/images/v2e pipeline without slowmo.png" alt="Pipeline" />
-      </div>
-    </section>
-
-    <section id="evaluation" class="section reveal">
-      <div class="section-header">
-        <h2>Evaluation</h2>
-        <p>Transformer parity: STARK (RGB) vs SDTrack (event) on identical splits.</p>
-      </div>
-      <div class="grid two">
-        <div class="card">
-          <h3 class="card-title">Headline numbers</h3>
-          <ul class="list">
-            <li>SDTrack (finetuned): 0.711 IoU, +0.399 over its pretrained baseline.</li>
-            <li>STARK (fine-tuned RGB): 0.795 IoU; ski-specific: 0.829 IoU.</li>
-            <li>High-clutter split: SDTrack 0.685 IoU (+20.0 over generic STARK).</li>
-          </ul>
-          <p class="card-body">Voxelized to 128x128 for current SNN limits; dataset supports full 1280x720.</p>
-        </div>
-        <div class="card">
-          <img class="card-image" src="media/images/IoU-over-time curves.png" alt="Training curves" />
-          <p class="card-body">Validation peaks around epoch 20; used as release checkpoint.</p>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate state-of-the-art trackers on eSkiTB. SDTrack (spiking transformer) achieves 0.711 IoU after fine-tuning, outperforming generic RGB trackers. Domain-specific fine-tuning on ski data yields significant improvements across all methods.
+          </p>
+          <img src="./media/images/tracking_samples.png" alt="Tracking Performance Comparison"/>
+          <p class="has-text-centered">
+            Quantitative comparison of event-based and frame-based trackers on eSkiTB test set
+          </p>
         </div>
       </div>
-      <div class="media-block">
-        <img src="media/images/tracking_samples.png" alt="Tracking samples" />
-      </div>
-    </section>
+    </div>
+    <!--/ Benchmark Results. -->
 
-    <section id="download" class="section reveal">
-      <div class="section-header">
-        <h2>Data access</h2>
-        <p>Links and checksums will be posted here (Dropbox/Drive). Repo remains lightweight.</p>
-      </div>
-      <div class="grid two">
-        <div class="card">
-          <h3 class="card-title">What you'll get</h3>
-          <ul class="list">
-            <li>Train/Val/Test archives (events + annotations).</li>
-            <li>Optional RGB frames and diagnostics.</li>
-            <li>Splits in <strong>data/splits</strong>; schema in <strong>data/annotations</strong>.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 class="card-title">Verify downloads</h3>
-          <pre class="code">md5sum train.tar.gz
-sha256sum train.tar.gz</pre>
-          <p class="card-body">Publish checksums with the links; keep relative paths consistent with the split files.</p>
+    <!-- Qualitative Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Qualitative Results</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Fine-tuned trackers demonstrate robust performance across challenging scenarios including occlusions, clutter, scale variation, and harsh weather conditions.
+          </p>
+          <img src="./media/images/Qualitative_samples.png" alt="Qualitative Tracking Results"/>
         </div>
       </div>
-    </section>
+    </div>
+    <!--/ Qualitative Results. -->
 
-    <section id="citation" class="section reveal">
-      <div class="section-header">
-        <h2>Citation</h2>
-        <p>Cite eSkiTB when using the dataset or code (BibTeX coming with arXiv ID).</p>
+    <!-- Sample Visualizations. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Event Visualizations</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Event representations capture motion information with high fidelity. Below are sample event frames from different skiing disciplines showing the sparse, motion-centric nature of event data.
+          </p>
+          <img src="./media/images/IoU-over-time curves.png" alt="IoU Over Time Analysis"/>
+          <p class="has-text-centered">
+            Temporal analysis of tracking performance across sequence duration
+          </p>
+        </div>
       </div>
-      <pre class="code">@article{eskitb2026,
-  title   = {eSkiTB: Event-based Ski Tracking Benchmark},
-  author  = {Vinod, Krishna and Vishal, Joseph Raj and Chanda, Kaustav and Ramesh, Prithvi Jai and Yang, Yezhou and Chakravarthi, Bharatesh},
-  journal = {arXiv preprint},
-  year    = {2026}
-}</pre>
-    </section>
-  </main>
+    </div>
+    <!--/ Sample Visualizations. -->
 
-  <footer class="footer">
-    <p>Made for the eSkiTB release. Template inspired by prior robotics/event pages.</p>
-  </footer>
+  </div>
+</section>
 
-  <script src="media/js/site.js"></script>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{eskitb2025,
+  title={eSkiTB: Event-based Ski Tracking Benchmark},
+  author={Anonymous},
+  journal={arXiv preprint arXiv:2601.06647},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
