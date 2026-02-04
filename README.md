@@ -1,15 +1,16 @@
 # Updates
+
 <!-- syntax for updating -->
 <!-- - [6 August 2025] Tool for Manual Annotation Release -->
 
-# *eSkiTB*: Event-based Ski Tracking Benchmark
+# _eSkiTB_: Event-based Ski Tracking Benchmark
 
 <!-- for adding link to paper and image -->
 <div>
 <a href="https://arxiv.org/abs/2601.06647">Paper</a> | 
 <a href="https://www.dropbox.com/scl/fi/1fbsjthks57e3mucxrsz5/E-Ski_v2e.zip?rlkey=8hn6umsbo406eygoy7s81kg1d&st=0fntvbfr&dl=0">Dataset</a> | 
-<a href="https://eventbasedvision.github.io/eskitb/">Website</a>
-</div> 
+<a href="https://eventbasedvision.github.io/eskitb/docs/index.html">Website</a>
+</div>
 
 <hr>
 
@@ -22,36 +23,39 @@ Tracking skiers in RGB broadcast footage is challenging due to motion blur, stat
 </p>
 
 # Dataset Overview
+
 <p align="justify">
 The eSkiTB dataset comprises 300 high-resolution broadcast sequences (1280x720) spanning Alpine Skiing (AL), Freestyle Skiing (FS), and Ski Jumping (JP). Generated via the v2e simulator under a strict iso-informational constraint (no neural interpolation), the dataset provides event streams in HDF5 format with per-frame bounding box annotations and 1 ms spline-interpolated dense labels. The dataset is split into Train/Val/Test with 240/30/30 sequences respectively, and includes 10 visual attribute annotations (occlusion, fast motion, illumination variation, background clutter, etc.).
 </p>
 
-# Dataset 
+# Dataset
 
 The Dataset is available <a href="https://www.dropbox.com/scl/fi/1fbsjthks57e3mucxrsz5/E-Ski_v2e.zip?rlkey=8hn6umsbo406eygoy7s81kg1d&st=0fntvbfr&dl=0">here</a>
 
 ### Dataset Statistics
-- **Total Sequences:** 300 (AL/FS/JP)  
-- **Duration:** ~235 minutes  
-- **Resolution:** 1280 x 720  
+
+- **Total Sequences:** 300 (AL/FS/JP)
+- **Duration:** ~235 minutes
+- **Resolution:** 1280 x 720
 - **Splits:** Train (240), Val (30), Test (30)
 - **Format:** HDF5 events `(t, x, y, p)` in microseconds; JSON boxes `[x, y, w, h]`
 
 ### Repository Structure
+
 ```bash
 eskitb-repo/
-├── README.md              
-├── LICENSE                
+├── README.md
+├── LICENSE
 ├── data/
-│   ├── README.md          
-│   ├── splits/            
-│   └── annotations/       
+│   ├── README.md
+│   ├── splits/
+│   └── annotations/
 ├── code/
-│   ├── evaluation/        
-│   ├── visualization/     
-│   └── generation/        
-├── examples/              
-└── docs/                  
+│   ├── evaluation/
+│   ├── visualization/
+│   └── generation/
+├── examples/
+└── docs/
 ```
 
 # Getting Started
@@ -60,7 +64,7 @@ Download the dataset and unpack under `data/raw`. Ensure paths align with `data/
 
 Install dependencies:
 
-```bash 
+```bash
 git clone https://github.com/eventbasedvision/eskitb.git
 cd eskitb
 pip install -r requirements.txt  # add h5py, numpy, opencv-python, etc.
@@ -70,7 +74,7 @@ pip install -r requirements.txt  # add h5py, numpy, opencv-python, etc.
 
 Run evaluation on validation split:
 
-```bash 
+```bash
 python code/evaluation/evaluate.py \
   --split data/splits/val.txt \
   --annotations data/annotations/example.json \
@@ -79,7 +83,7 @@ python code/evaluation/evaluate.py \
 
 Visualize events with bounding boxes:
 
-```bash 
+```bash
 python code/visualization/visualize_events.py \
   --events examples/sample_events.npy \
   --annotation data/annotations/example.json \
@@ -93,6 +97,7 @@ python code/visualization/visualize_events.py \
 Code is released under the MIT License.
 
 # Citation
+
 If you use our dataset or code, please cite our paper and the original SkiTB and v2e works:
 
 ```bash
